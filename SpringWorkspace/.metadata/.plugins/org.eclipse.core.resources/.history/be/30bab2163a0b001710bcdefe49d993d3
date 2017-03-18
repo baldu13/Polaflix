@@ -1,0 +1,19 @@
+package com.example.domain;
+
+import java.util.Set;
+
+import javax.persistence.*;
+
+@Entity
+public class Car {
+
+	    @Id
+		String plate;
+	    
+	    @OneToMany
+	    Driver owner;
+	    
+	    @ManyToMany
+	    Set<Driver> drivers;
+	    
+}

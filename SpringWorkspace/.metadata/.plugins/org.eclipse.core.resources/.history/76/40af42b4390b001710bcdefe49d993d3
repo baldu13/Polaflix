@@ -1,0 +1,10 @@
+package com.example.domain;
+
+import javax.persistence.*;
+
+@Entity
+public class Car {
+
+		String plate;
+	    
+}
