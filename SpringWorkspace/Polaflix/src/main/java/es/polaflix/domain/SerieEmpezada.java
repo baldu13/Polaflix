@@ -2,10 +2,17 @@ package es.polaflix.domain;
 
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
 public class SerieEmpezada implements Comparable<SerieEmpezada>{
 
+	@Id
+	@GeneratedValue
 	private int id;
+	@ManyToOne
 	private Serie serie;
+	@ManyToMany
 	private Set<Capitulo> capitulos;
 	
 	public SerieEmpezada() {}

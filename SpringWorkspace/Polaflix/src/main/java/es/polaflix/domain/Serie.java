@@ -2,12 +2,19 @@ package es.polaflix.domain;
 
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
 public class Serie implements Comparable<Serie>{
 
+	@Id
+	@GeneratedValue
 	private int id;
 	private String nombre;
 	private String descripcion;
+	@ManyToOne
 	private TipoSerie tipo;
+	@OneToMany(fetch = FetchType.LAZY)
 	private Set<Temporada> temporadas;
 	
 	public Serie() {}

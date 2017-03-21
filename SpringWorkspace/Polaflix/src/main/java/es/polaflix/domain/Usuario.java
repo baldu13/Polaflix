@@ -2,14 +2,37 @@ package es.polaflix.domain;
 
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario implements Comparable<Usuario>{
+	@Id
+	@GeneratedValue
 	private int id;
 	private String alias;
 	private String password;
 	private String cuentaBancaria;
+	@ManyToMany
+	@JoinTable(
+			   name = "usuario_seriesTerminadas", 
+			   joinColumns = @JoinColumn(name = "usuario_id"), 
+			   inverseJoinColumns = @JoinColumn(name = "serie_id"))
 	private Set<Serie> seriesTerminadas;
+	@ManyToMany
+	@JoinTable(
+			   name = "usuario_seriesPendientes", 
+			   joinColumns = @JoinColumn(name = "usuario_id"), 
+			   inverseJoinColumns = @JoinColumn(name = "serie_id"))
 	private Set<Serie> seriesPendientes;
+	@OneToMany 
+	@JoinTable(
+			   name = "usuario_seriesEmpezadas", 
+			   joinColumns = @JoinColumn(name = "usuario_id"), 
+			   inverseJoinColumns = @JoinColumn(name = "serie_empezada_id"))
 	private Set<SerieEmpezada> seriesEmpezadas;
+	@OneToMany
 	private Set<Factura> facturas;
 	
 	public Usuario() {}

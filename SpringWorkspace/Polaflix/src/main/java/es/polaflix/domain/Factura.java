@@ -2,10 +2,16 @@ package es.polaflix.domain;
 
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
 public class Factura implements Comparable<Factura>{
+	@Id
+	@GeneratedValue
 	private int id;
 	private int mes;
 	private int anyo;
+	@OneToMany
 	private Set<CapituloFactura> capitulos;
 	
 	public Factura() {}

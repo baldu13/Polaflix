@@ -1,7 +1,14 @@
 package es.polaflix.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo", discriminatorType= DiscriminatorType.STRING)
 public abstract class Artista implements Comparable<Artista>{
 
+	@Id
+	@GeneratedValue
 	private int id;
 	private String nombre;
 	private String apellido;

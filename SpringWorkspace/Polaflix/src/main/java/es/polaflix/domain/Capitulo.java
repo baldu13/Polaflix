@@ -2,12 +2,18 @@ package es.polaflix.domain;
 
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
 public class Capitulo implements Comparable<Capitulo>{
 
+	@Id
+	@GeneratedValue
 	private int id;
 	private int numCap;
 	private String titulo;
 	private String descripcion;
+	@ElementCollection
 	private Set<String> enlaces;
 	
 	public Capitulo() {}

@@ -1,0 +1,6 @@
+package es.polaflix.domain;
+
+import javax.persistence.Entity;
+
+@Entity
+public class UsuarioStandard extends Usuario{ }

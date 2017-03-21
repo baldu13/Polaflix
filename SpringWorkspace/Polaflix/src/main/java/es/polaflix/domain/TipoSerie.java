@@ -1,7 +1,12 @@
 package es.polaflix.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class TipoSerie implements Comparable<TipoSerie>{
 	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String nombre;
 	private double precioCap;

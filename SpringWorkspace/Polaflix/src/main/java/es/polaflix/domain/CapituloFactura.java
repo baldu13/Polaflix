@@ -1,12 +1,19 @@
 package es.polaflix.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class CapituloFactura implements Comparable<CapituloFactura>{
+	@Id
+	@GeneratedValue 
 	private int id;
 	private double precio;
 	private int dia;
 	private int mes;
 	private int anyo;
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Capitulo capitulo;
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Serie serie;
 	
 	public CapituloFactura() {}

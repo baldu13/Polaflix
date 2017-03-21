@@ -2,10 +2,16 @@ package es.polaflix.domain;
 
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
 public class Temporada implements Comparable<Temporada>{
 
+	@Id
+	@GeneratedValue
 	private int id;
 	private int numTemp;
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Capitulo> capitulos;
 	
 	public Temporada() {}
