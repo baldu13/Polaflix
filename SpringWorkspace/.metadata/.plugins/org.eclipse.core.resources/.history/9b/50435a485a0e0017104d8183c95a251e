@@ -1,6 +1,0 @@
-package es.polaflix.domain;
-
-import javax.persistence.Entity;
-
-@Entity
-public class Actor extends Artista {}

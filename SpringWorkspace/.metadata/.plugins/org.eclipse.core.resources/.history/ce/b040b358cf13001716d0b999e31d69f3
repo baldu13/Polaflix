@@ -1,0 +1,5 @@
+package es.polaflix.repositories;
+
+public class SeriesRepository {
+
+}

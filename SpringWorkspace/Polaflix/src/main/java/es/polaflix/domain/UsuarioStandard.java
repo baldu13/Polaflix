@@ -4,5 +4,5 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("standard")
+@DiscriminatorValue("Standard")
 public class UsuarioStandard extends Usuario{ }

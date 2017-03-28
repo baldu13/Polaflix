@@ -1,0 +1,13 @@
+package es.polaflix.repositories;
+
+import java.util.List;
+import org.springframework.data.repository.Repository;
+
+import es.polaflix.domain.*;
+
+public interface SeriesRepository extends Repository<Serie, Long>{
+
+	List<Serie> findAll();
+	
+	Serie findByNombre(String nombre);
+}
