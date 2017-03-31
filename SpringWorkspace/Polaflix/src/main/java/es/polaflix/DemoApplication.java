@@ -1,6 +1,7 @@
 package es.polaflix;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,8 +33,20 @@ public class DemoApplication{
 				Serie s = sr.findById(2);
 				System.out.println(s.getNombre());
 			*/
-			Usuario u = ur.findByAlias("gryphus");
-			System.out.println(u.getAlias()+" "+u.getPassword());
+			List<Serie> ss = sr.findAll();
+			for(Serie s: ss){
+				System.out.println("Titulo: "+s.getNombre());
+				System.out.println("Descripcion: "+s.getDescripcion());
+				System.out.println();
+				for(Temporada t: s.getTemporadas()){
+					System.out.println("   Temporada "+t.getNumTemp());
+					for(Capitulo c: t.getCapitulos()){
+						System.out.println("      Capitulo "+c.getNumCap()+": "+c.getTitulo());
+					}
+				}
+				System.out.println();
+				System.out.println();
+			}
 		};
 	}
 }

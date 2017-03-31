@@ -12,6 +12,7 @@ public class Temporada implements Comparable<Temporada>{
 	private int id;
 	private int numTemp;
 	@OneToMany(fetch = FetchType.EAGER)
+	@OrderBy("numCap asc")
 	private Set<Capitulo> capitulos;
 	
 	public Temporada() {}

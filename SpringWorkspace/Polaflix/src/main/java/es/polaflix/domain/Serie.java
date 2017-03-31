@@ -14,8 +14,23 @@ public class Serie implements Comparable<Serie>{
 	private String descripcion;
 	@ManyToOne
 	private TipoSerie tipo;
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.EAGER)
+	@OrderBy("numTemp asc")
 	private Set<Temporada> temporadas;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			   name = "serie_creadores", 
+			   joinColumns = @JoinColumn(name = "serie_id"), 
+			   inverseJoinColumns = @JoinColumn(name = "creador_id"))
+	@OrderBy("apellido asc")
+	private Set<Creador> creadores;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			   name = "serie_actores", 
+			   joinColumns = @JoinColumn(name = "serie_id"), 
+			   inverseJoinColumns = @JoinColumn(name = "actor_id"))
+	@OrderBy("apellido asc")
+	private Set<Actor> actores;
 	
 	public Serie() {}
 
@@ -59,6 +74,22 @@ public class Serie implements Comparable<Serie>{
 		this.temporadas = temporadas;
 	}
 	
+	public Set<Creador> getCreadores() {
+		return creadores;
+	}
+
+	public void setCreadores(Set<Creador> creadores) {
+		this.creadores = creadores;
+	}
+
+	public Set<Actor> getActores() {
+		return actores;
+	}
+
+	public void setActores(Set<Actor> actores) {
+		this.actores = actores;
+	}
+
 	@Override
 	public int compareTo(Serie s){
 		int compare = nombre.compareTo(s.getNombre());
