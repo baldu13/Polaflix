@@ -25,28 +25,13 @@ public class DemoApplication{
 	@Bean
 	public CommandLineRunner runner(SeriesRepository sr, UsersRepository ur){
 		return args -> {
-			//CODIGO PARA PROBAR
 			/*
-				List<Serie> series = sr.findAll();
-				for(Serie s: series)
-					System.out.println(s.getNombre());
-				Serie s = sr.findById(2);
-				System.out.println(s.getNombre());
+			Usuario u = new UsuarioCuotaFija();
+			u.setAlias("Mike");
+			u.setPassword("algo");
+			u.setCuentaBancaria("Ninguna");
+			ur.save(u);
 			*/
-			List<Serie> ss = sr.findAll();
-			for(Serie s: ss){
-				System.out.println("Titulo: "+s.getNombre());
-				System.out.println("Descripcion: "+s.getDescripcion());
-				System.out.println();
-				for(Temporada t: s.getTemporadas()){
-					System.out.println("   Temporada "+t.getNumTemp());
-					for(Capitulo c: t.getCapitulos()){
-						System.out.println("      Capitulo "+c.getNumCap()+": "+c.getTitulo());
-					}
-				}
-				System.out.println();
-				System.out.println();
-			}
 		};
 	}
 }

@@ -1,0 +1,33 @@
+/series
+	GET: Devuelve lista de todas las series
+	PUT: Añade nueva serie (NO NECESARIO DE MOMENTO)
+/series/{nombreSerie}
+	GET: Devuelve la serie con el nombre "nombreSerie"
+	PUT: Actualiza los datos de la serie
+/series (inicial={inicial} como parámetro)
+	GET: Lista de series con una cierta inicial
+/series (withText={texto} como parámetro)
+	GET: Lista de series que contiene el texto en su título
+
+/usuarios
+	GET: Lista de todos los usuarios
+	PUT: Añade nuevo usuario
+/usuarios/{usuario}
+	GET: Devuelve el usuario con username "usuario"
+	PUT: Actualiza los datos del usuario
+/usuarios/{usuario}/series
+	GET: Devuelve todas las series de un usuario
+	PUT: Añade una nueva serie a un usuario
+/usuarios/{usuario}/series/{serie}
+	GET: Devuelve la serie de un usuario (con su estado)
+	PUT: Actualiza una serie para un usuario
+/usuarios/{usuario}/facturas
+	GET: Devuelve todas las facturas de un usuario
+/usuarios/{usuario}/facturas/{anyo}
+	GET: Devuelve todas las facturas de un usuario de un anyo
+/usuarios/{usuario}/facturas/{anyo}/{mes}
+	GET: Devuelve la factura de un usuario de un año y mes concretos
+
+/usuarios/{usuario}/visualizaCapitulo (cap={idCapitulo} como parametro)
+	PUT: Añade una nueva visualización de un cap al usuario (añadir a la factura y a capitulos vistos)
+

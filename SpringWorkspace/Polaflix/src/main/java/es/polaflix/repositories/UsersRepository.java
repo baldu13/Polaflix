@@ -1,8 +1,15 @@
 package es.polaflix.repositories;
 
+import java.util.List;
+
 import org.springframework.data.repository.Repository;
 import es.polaflix.domain.Usuario;
 
 public interface UsersRepository extends Repository<Usuario,Integer>{
+	
+	List<Usuario> findAll();
+	
 	Usuario findByAlias(String alias);
+	
+	Usuario save(Usuario u);
 }
