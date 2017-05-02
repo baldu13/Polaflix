@@ -1,0 +1,66 @@
+body {
+	margin: 1em;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	background-color: #c1ffbf;
+}
+
+#divLogo {
+	float: left;
+	width: 15%;
+	height: 2.5cm;
+	line-height: 1.25cm;
+}
+
+#divPerfil {
+	float:right;
+	width: 15%;
+}
+
+#divPerfil img{
+	float: right;
+	margin-right: 1.5em;
+	background-color: white;
+}
+
+#imgPolaflix {
+	float: left;
+}
+
+.fotoCabezera {
+	width: 2.5cm;
+	height: 2.5cm;
+}
+
+h1 {
+	width: 69%;
+	text-align: center;
+	float:left;
+}
+
+#cabezera {
+	margin-bottom: 0.6em;
+	width: 100%;
+	float: left;
+	border-bottom-style: solid;
+	border-bottom-width: 0.15em;
+	padding-bottom: 1em;
+}
+
+.publicidad img {
+	width: 100%;
+	height: 6em;
+}
+
+#menuSuperior {
+	margin-bottom: 1em;
+	margin-top: 0.6em;
+}
+
+/* Estilo de los enlaces */
+a { 
+	color: #2E9AFE;
+}
+
+a:hover {
+	color: #0000ff;
+}
