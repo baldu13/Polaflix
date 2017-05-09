@@ -1,7 +1,5 @@
 package es.polaflix;
 
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import es.polaflix.domain.*;
 import es.polaflix.repositories.*;
 
 @SpringBootApplication
