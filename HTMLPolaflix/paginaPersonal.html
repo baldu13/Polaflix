@@ -4,11 +4,17 @@
 	<meta charset="UTF-8"/>
 	<link rel="stylesheet" href="estiloComunPolaflix.css"/>
 	<link rel="stylesheet" href="estiloPersonal.css"/>
+	<link rel="stylesheet" href="estiloSeries.css"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="tablaSeriesApp.js"></script> <!-- Controlador de la tabla de las series -->
+    <script src="polaflix.config.js"></script> <!-- Controlador del div del contenido segun url -->
 	<title>Bienvenido a Polaflix</title>
 </head>
-<body>
+<body ng-app="polaflix">
 	<div id="cabezera">
 		<div id="divLogo">
 			<img id="imgPolaflix" class="fotoCabezera" src="https://www.spreadshirt.es/image-server/v1/designs/15163340,width=178,height=178/letra-p-en-el-look-grunge.png" alt="Polaflix"/>
@@ -23,29 +29,7 @@
 	</div>
 
 	<!-- Contenido propio de la página a partir de aqui -->
-	<div id="contenido">
-		<h3>Empezadas</h3>
-		<div class="listaItems">
-			<a href="">Serie 1</a><br/>
-			<a href="">Serie 2</a><br/>
-			<a href="">Serie 3</a><br/>
-			<a href="">Serie 4</a><br/>
-		</div>
-		<h3>Pendientes</h3>
-		<div class="listaItems">
-			<a href="">Serie 1</a><br/>
-			<a href="">Serie 2</a><br/>
-			<a href="">Serie 3</a><br/>
-			<a href="">Serie 4</a><br/>
-		</div>
-		<h3>Terminadas</h3>
-		<div class="listaItems">
-			<a href="">Serie 1</a><br/>
-			<a href="">Serie 2</a><br/>
-			<a href="">Serie 3</a><br/>
-			<a href="">Serie 4</a><br/>
-		</div>
-	</div>
+	<div class="contenido" ng-view></div>
 
 	<div class="publicidad">
 		<img src="http://2.bp.blogspot.com/_M4VxoRyjUmw/TRzsnEz9_LI/AAAAAAAAAGE/o6vDmfIoitI/s1600/BANNERvisit+copia.jpg" alt="Banner publicitario"/>

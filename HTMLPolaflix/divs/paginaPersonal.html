@@ -1,0 +1,23 @@
+<div id="contenido" ng-app="TablaSeriesApp" ng-controller="TablaSeriesController as ctrl">
+		<h3>Empezadas</h3>
+		<div class="listaItems">
+			<div ng-repeat="serie in seriesEmpezadas" ng-show="dataLoadedEmpezadas">
+				<a href="http://localhost:8000/paginaSerie.html?id={{serie.serie.id}}">{{serie.serie.nombre}}</a><br/>
+			</div>
+			<p class="errormsg" ng-hide="dataLoadedEmpezadas">No se pudieron cargar las series empezadas...</p>
+		</div>
+		<h3>Pendientes</h3>
+		<div class="listaItems">
+			<div ng-repeat="serie in seriesPendientes" ng-show="dataLoadedPendientes">
+				<a href="http://localhost:8000/paginaSerie.html?id={{serie.id}}">{{serie.nombre}}</a><br/>
+			</div>
+			<p class="errormsg" ng-hide="dataLoadedPendientes">No se pudieron cargar las series pendientes...</p>
+		</div>
+		<h3>Terminadas</h3>
+		<div class="listaItems" ng-show="dataLoadedTerminadas">
+			<div ng-repeat="serie in seriesTerminadas">
+				<a href="http://localhost:8000/paginaSerie.html?id={{serie.id}}">{{serie.nombre}}</a><br/>
+			</div>
+			<p class="errormsg" ng-hide="dataLoadedTerminadas">No se pudieron cargar las series terminadas...</p>
+		</div>
+</div>

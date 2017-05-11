@@ -1,3 +1,12 @@
+#headerSerie {
+	text-align: center;
+}
 i {
 	font-size: 100%;
+	vertical-align: bottom;
+}
+
+span {
+	margin-left: 1em;
+	margin-right: 1em;
 }

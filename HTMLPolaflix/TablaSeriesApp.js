@@ -9,7 +9,7 @@ angular.module('TablaSeriesApp',[]).
         $scope.dataLoadedPendientes = false;
         $scope.dataLoadedTerminadas = false;
 
-				$http.get('jsonTest/seriesEmpezadas.json').then(
+				$http.get('http://localhost:8080/usuarios/gryphus/empezadas.json').then(
 					function(response) {
             $scope.seriesEmpezadas = response.data;
 						$scope.dataLoadedEmpezadas = true;
@@ -19,7 +19,7 @@ angular.module('TablaSeriesApp',[]).
 					}
 				);
 
-        $http.get('jsonTest/seriesPendientes.json').then(
+        $http.get('http://localhost:8080/usuarios/gryphus/pendientes.json').then(
           function(response) {
             $scope.seriesPendientes = response.data;
             $scope.dataLoadedPendientes = true;
@@ -29,7 +29,7 @@ angular.module('TablaSeriesApp',[]).
           }
         );
 
-        $http.get('jsonTest/seriesTerminadas.json').then(
+        $http.get('http://localhost:8080/usuarios/gryphus/terminadas.json').then(
           function(response) {
             $scope.seriesTerminadas = response.data;
             $scope.dataLoadedTerminadas = true;

@@ -4,7 +4,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Proxy;
+
 @Entity
+@Proxy(lazy = false)
 public class SerieEmpezada implements Comparable<SerieEmpezada>{
 
 	@Id

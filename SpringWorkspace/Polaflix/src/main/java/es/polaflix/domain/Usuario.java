@@ -4,7 +4,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Proxy;
+
 @Entity
+@Proxy(lazy = false)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario implements Comparable<Usuario>{

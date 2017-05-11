@@ -23,4 +23,6 @@ public interface SeriesRepository extends Repository<Serie, Integer>{
 	 public List<Serie> findBySearchQuery(@Param("text") String text);
 	 
 	 Serie save(Serie s);
+	 
+	 SerieEmpezada save(SerieEmpezada s);
 }
