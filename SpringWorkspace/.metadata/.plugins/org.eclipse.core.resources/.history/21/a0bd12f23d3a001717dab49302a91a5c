@@ -37,8 +37,8 @@ public class SeriesController {
 	}
 	
 	@RequestMapping(value = "/series/{serie}", method = RequestMethod.GET)
-	public ResponseEntity<Serie> getSerie(@PathVariable(value="serie") int serie){
-		Serie s = sr.findById(serie);
+	public ResponseEntity<Serie> getSerie(@PathVariable(value="serie") String serie){
+		Serie s = sr.findById(Integer.parseInt(serie));
 		if(s == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

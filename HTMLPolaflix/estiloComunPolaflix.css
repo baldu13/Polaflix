@@ -64,3 +64,8 @@ a {
 a:hover {
 	color: #0000ff;
 }
+
+.errormsg {
+	color: red;
+	font-weight: bold;
+}

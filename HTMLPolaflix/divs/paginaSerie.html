@@ -1,3 +1,11 @@
-<div id="headerSerie">
-	<a href=""><i class="material-icons">chevron_left</i></a><i id="tituloSerie">Titulo Serie</i><span>|</span> Temporada<i id="numTemp">2</i><a href=""><i class="material-icons">chevron_right</i></a>
+<div id="headerSerie" ng-app="PolaflixApp" ng-controller="TempSerieController as ctrl">
+	<p ass="errormsg" ng-hide="serieLoaded">No se encontró la serie o la temporada...</p>
+	<div ng-show="serieLoaded">
+		<span ng-click="ctrl.changeTempClicked(2)"><i class="material-icons">chevron_left</i></span><i id="tituloSerie">{{serie.nombre}}</i><span>|</span> Temporada <i id="numTemp">{{tempActiva.numTemp}}</i><span ng-click="ctrl.changeTempClicked(1)"><i class="material-icons">chevron_right</i></span>
+		<table id="listaCapitulos">
+			<tr ng-repeat="cap in tempActiva.capitulos">
+				<td><div class="serieColumn">{{cap.titulo}}</div></td> <td><i class="material-icons">add</i></td>
+			</tr>
+		</table>
+	</div>
 </div>

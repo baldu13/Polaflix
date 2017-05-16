@@ -1,5 +1,5 @@
 angular.
-  module('polaflix',['ngRoute','TablaSeriesApp']).
+  module('polaflix',['ngRoute','PolaflixApp']).
     config(['$locationProvider','$routeProvider',
       function config($locationProvider,$routeProvider) {
         $locationProvider.hashPrefix('!');
@@ -10,12 +10,6 @@ angular.
           }).
           when('/serie',{
             templateUrl: 'divs/paginaSerie.html'
-          }).
-          when('/secondParagraph',{
-            templateUrl: 'secondParagraph/secondParagraph.html'
-          }).
-          when('/thirdParagraph',{
-            templateUrl: 'thirdParagraph/thirdParagraph.html'
           }).
           //otherwise('/firstParagraph');
           otherwise({

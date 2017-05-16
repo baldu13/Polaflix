@@ -23,8 +23,3 @@ div.listaItems{
 .listaItems a:hover {
 	color: red;
 }
-
-.errormsg {
-	color: red;
-	font-weight: bold;
-}
