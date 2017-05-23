@@ -40,13 +40,10 @@ var myApp = angular.module('PolaflixApp',[]);
             $scope.dataLoadedTerminadas = false;
           }
         );
-
-        //No utilizado de momento
-        this.onOrderingIconClicked = function(column,asc) {
-          $scope.orderingCriteria = (asc?"":"-") + column;
-        };
       }
     ]);
+
+
 
     //Controlador de la serie
     myApp.controller('TempSerieController',['$scope','$http',
@@ -76,15 +73,102 @@ var myApp = angular.module('PolaflixApp',[]);
 
         //Funciones para cambiar de temp (adelante y atras)
         this.changeTempClicked = function(tmp){
-          console.log($scope.tempActiva.capitulos);
           if((temp>1 && tmp == 2) || (temp < $scope.serie.temporadas.length && tmp == 1)){ //En los limites de las temporadas
             if(tmp == 1)
               temp = Number(temp) + 1;
             if(tmp == 2)
               temp = Number(temp) - 1;
-            window.location.replace('http://localhost:8000/paginaPersonal.html#!/serie?id=1&temp='+temp);
+            window.location.replace('http://localhost:8000/polaflix.html#!/serie?id='+idSerie+'&temp='+temp);
           }
         }
+
+        this.seeCap = function(serie, temp, cap){
+          $http.post('http://localhost:8080/usuarios/gryphus/capitulosVistos/'+serie+'/'+temp+'/'+cap);
+          window.location.replace('http://localhost:8000/polaflix.html#!/verSerie?id='+serie+'&temp='+temp+'&cap='+cap);
+        }
+
+        //Funcion para obtener parametros de la url
+        function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, "\\$&");
+          var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, " "));
+        };
+      }
+    ]);
+
+
+    //Controlador para la visualizacion del cap
+    myApp.controller('CapSerieController',['$scope','$http',
+             function($scope,$http) {
+
+        $scope.serie = getParameterByName("id");
+        $scope.temp = getParameterByName("temp");
+        $scope.cap = getParameterByName("cap");
+
+        //Funcion para obtener parametros de la url
+        function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, "\\$&");
+          var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, " "));
+        };
+      }
+    ]);
+
+
+    //Controlador para los cargos
+    myApp.controller('CargosController',['$scope','$http',
+             function($scope,$http) {
+
+        $scope.mes = getParameterByName("mes");
+        $scope.anyo = getParameterByName("anyo");
+        $scope.cargos;
+        $scope.total = 0;
+        $scope.loaded = false;
+
+        var d = new Date();
+
+        if(!$scope.mes) $scope.mes = d.getMonth()+1;
+        if(!$scope.anyo) $scope.anyo = d.getFullYear();
+
+        $http.get('http://localhost:8080/usuarios/gryphus/cargos/'+$scope.anyo+'/'+$scope.mes+'.json').then(
+          function(response) {
+            console.log('Cargos del mes/anyo: '+$scope.mes+'/'+$scope.anyo);
+            $scope.cargos = response.data.capitulos;
+            console.log(response.data);
+            var i;
+            if(response.data){
+              for (i = 0; i < response.data.capitulos.length; i++) {
+                  $scope.total += response.data.capitulos[i].precio;
+              }
+              $scope.loaded = true;
+            }
+          },
+          function(response) {
+            $scope.loaded = false;
+          }
+        );
+
+
+        //Cambiar a mes anterior o siguiente en la factura
+        //TODO
+        this.changePeriodoClicked = function(tmp){
+          if((temp>1 && tmp == 2) || (temp < $scope.serie.temporadas.length && tmp == 1)){ //En los limites de las temporadas
+            if(tmp == 1)
+              temp = Number(temp) + 1;
+            if(tmp == 2)
+              temp = Number(temp) - 1;
+            window.location.replace('http://localhost:8000/polaflix.html#!/serie?id='+idSerie+'&temp='+temp);
+          }
+        }
+
 
         //Funcion para obtener parametros de la url
         function getParameterByName(name, url) {

@@ -65,6 +65,6 @@ public class Factura implements Comparable<Factura>{
 	
 	@Override
 	public int hashCode(){
-		return hashCode(); //Provisional
+		return id;
 	}
 }

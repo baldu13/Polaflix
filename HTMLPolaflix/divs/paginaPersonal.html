@@ -2,21 +2,21 @@
 		<h3>Empezadas</h3>
 		<div class="listaItems">
 			<div ng-repeat="serie in seriesEmpezadas" ng-show="dataLoadedEmpezadas">
-				<a href="http://localhost:8000/paginaPersonal.html#!serie?id={{serie.serie.id}}&temp=1">{{serie.serie.nombre}}</a><br/>
+				<a href="http://localhost:8000/polaflix.html#!serie?id={{serie.serie.id}}&temp=1">{{serie.serie.nombre}}</a><br/>
 			</div>
 			<p class="errormsg" ng-hide="dataLoadedEmpezadas">No se pudieron cargar las series empezadas...</p>
 		</div>
 		<h3>Pendientes</h3>
 		<div class="listaItems">
 			<div ng-repeat="serie in seriesPendientes" ng-show="dataLoadedPendientes">
-				<a href="http://localhost:8000/paginaPersonal.html#!serie?id={{serie.id}}&temp=1">{{serie.nombre}}</a><br/>
+				<a href="http://localhost:8000/polaflix.html#!serie?id={{serie.id}}&temp=1">{{serie.nombre}}</a><br/>
 			</div>
 			<p class="errormsg" ng-hide="dataLoadedPendientes">No se pudieron cargar las series pendientes...</p>
 		</div>
 		<h3>Terminadas</h3>
 		<div class="listaItems">
 			<div ng-repeat="serie in seriesTerminadas" ng-show="dataLoadedTerminadas">
-				<a href="http://localhost:8000/paginaPersonal.html#!serie?id={{serie.id}}&temp=1">{{serie.nombre}}</a><br/>
+				<a href="http://localhost:8000/polaflix.html#!serie?id={{serie.id}}&temp=1">{{serie.nombre}}</a><br/>
 			</div>
 			<p class="errormsg" ng-hide="dataLoadedTerminadas">No se pudieron cargar las series terminadas...</p>
 		</div>

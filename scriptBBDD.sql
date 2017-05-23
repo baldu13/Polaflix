@@ -119,3 +119,5 @@ INSERT INTO serie_actores(serie_id,actor_id) VALUES(2,5);
 INSERT INTO Usuario(id,tipo,alias,cuenta_bancaria,password) VALUES (1,'CuotaFija','pepeflow','ES3211122233344455566677','pepe23');
 INSERT INTO Usuario(id,tipo,alias,cuenta_bancaria,password) VALUES (2,'Standard','gryphus','ES99988877766655544433','elpipero');
 
+SELECT * FROM Capitulo_Factura;
+SELECT * FROM factura;

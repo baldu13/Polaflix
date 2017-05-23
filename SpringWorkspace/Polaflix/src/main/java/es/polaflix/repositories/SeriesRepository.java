@@ -25,4 +25,8 @@ public interface SeriesRepository extends Repository<Serie, Integer>{
 	 Serie save(Serie s);
 	 
 	 SerieEmpezada save(SerieEmpezada s);
+	 
+	 CapituloFactura save(CapituloFactura cf);
+	 
+	 Factura save(Factura f);
 }

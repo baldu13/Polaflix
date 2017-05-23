@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="estiloComunPolaflix.css"/>
+	<link rel="stylesheet" href="estiloPersonal.css"/>
+	<link rel="stylesheet" href="estiloSeries.css"/>
+	<link rel="stylesheet" href="estiloCargos.css"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="polaflixApp.js"></script> <!-- Controlador de la tabla de las series -->
+    <script src="polaflix.config.js"></script> <!-- Controlador del div del contenido segun url -->
+	<title>Bienvenido a Polaflix</title>
+</head>
+<body ng-app="polaflix">
+	<div id="cabezera">
+		<div id="divLogo">
+			<img id="imgPolaflix" class="fotoCabezera" src="https://www.spreadshirt.es/image-server/v1/designs/15163340,width=178,height=178/letra-p-en-el-look-grunge.png" alt="Polaflix"/>
+			<h2>olaflix</h2>
+		</div>
+		<h1>Bienvenido Usuario</h1>
+		<div id="divPerfil"><img id="fotoUsuario" class="fotoCabezera" src="http://powerforum.newanglemedia.com/2013/themes/intellisystems/site/img/icons/user/default-profile.png" alt="FotoUsuario"\></div>
+	</div>
+
+	<div id="menuSuperior">
+		<a href="http://localhost:8000/polaflix.html#!/">Inicio</a>  |  <a href="http://localhost:8000/polaflix.html#!/addSerie">Agregar serie</a>  |  <a href="http://localhost:8000/polaflix.html#!/cargos">Ver cargos</a>
+	</div>
+
+	<!-- Contenido propio de la página a partir de aqui -->
+	<div class="contenido" ng-view></div>
+
+	<div class="publicidad">
+		<img src="http://2.bp.blogspot.com/_M4VxoRyjUmw/TRzsnEz9_LI/AAAAAAAAAGE/o6vDmfIoitI/s1600/BANNERvisit+copia.jpg" alt="Banner publicitario"/>
+	</div>
+</body>
+</html>

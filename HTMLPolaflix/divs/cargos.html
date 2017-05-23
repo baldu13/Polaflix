@@ -1,0 +1,18 @@
+<div ng-app="PolaflixApp" ng-controller="CargosController as ctrl">
+	<p class="errormsg" ng-hide="loaded">No se pudieron recobrar los datos...</p>
+	<div ng-show="loaded">
+		<div class=menuCargos>
+			<a href="" class="boton" ng-click="ctrl.changePeriodoClicked(2)"><i class="material-icons">chevron_left</i></a>
+			Lista de cargos del {{mes}}/{{anyo}}
+			<a href="" class="boton" ng-click="ctrl.changePeriodoClicked(1)"><i class="material-icons">chevron_right</i></a>
+		</div>
+		<table id="listaCargos">
+			<th>Capitulo</th><th>Fecha</th><th>Precio</th>
+			<tr ng-repeat="cap in cargos">
+				<td>{{cap.capitulo.titulo}}</td><td>{{cap.dia}}/{{cap.mes}}/{{cap.anyo}}</td><td>{{cap.precio}}€</td>
+			</tr>
+			<tr><td></td><td></td><td></td>
+			<tr><td>TOTAL</td><td></td><td>{{total}}€</td>
+			</tr>
+		</table>
+</div>

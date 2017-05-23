@@ -1,10 +1,14 @@
 package es.polaflix.domain;
 
+import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
 import org.hibernate.annotations.Proxy;
+
+import es.polaflix.repositories.SeriesRepository;
 
 @Entity
 @Proxy(lazy = false)
@@ -102,6 +106,31 @@ public abstract class Usuario implements Comparable<Usuario>{
 
 	public void setFacturas(Set<Factura> facturas) {
 		this.facturas = facturas;
+	}
+	
+	public void anadeCapVisto(CapituloFactura cf, SeriesRepository sr){
+		boolean added = false;
+		
+		for(Factura f: facturas){
+			if(!added && f.getAnyo()==cf.getAnyo() && f.getMes()==cf.getMes()){
+				f.getCapitulos().add(cf);
+				added = true;
+			}
+		}
+		
+		if(!added){
+			Calendar now = Calendar.getInstance();
+			int mes = now.get(Calendar.MONTH)+1;
+			int anyo = now.get(Calendar.YEAR);
+			Factura f = new Factura();
+			f.setAnyo(anyo);
+			f.setMes(mes);
+			Set<CapituloFactura> newSet = new HashSet<CapituloFactura>();
+			newSet.add(cf);
+			f.setCapitulos(newSet);
+			sr.save(f);
+			facturas.add(f);
+		}
 	}
 	
 	@Override

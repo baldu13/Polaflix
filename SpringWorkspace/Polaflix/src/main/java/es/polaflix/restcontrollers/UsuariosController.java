@@ -1,15 +1,14 @@
 package es.polaflix.restcontrollers;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import es.polaflix.domain.*;
 import es.polaflix.repositories.SeriesRepository;
 import es.polaflix.repositories.UsersRepository;
@@ -61,5 +60,62 @@ public class UsuariosController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Set<Serie>>(u.getSeriesTerminadas(),HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "usuarios/{usuario}/capitulosVistos/{serie}/{temp}/{cap}", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> anadeVisualizacion(@PathVariable(value="usuario") String usuario, @PathVariable(value="serie") int serie, @PathVariable(value="temp") int temp, @PathVariable(value="cap") int cap){
+		Usuario u = ur.findByAlias(usuario);
+		Serie s = sr.findById(serie);
+		Capitulo capi = null;
+		if(u == null || s == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		for(Temporada t: s.getTemporadas()){
+			if(t.getNumTemp()==temp){
+				for(Capitulo c: t.getCapitulos()){
+					if(c.getNumCap()==cap){
+						capi = c;
+						break;
+					}
+				}
+			}
+		}
+		if(capi == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		Calendar now = Calendar.getInstance();
+		int dia = now.get(Calendar.DAY_OF_MONTH);
+		int mes = now.get(Calendar.MONTH)+1;
+		int anyo = now.get(Calendar.YEAR);
+		CapituloFactura cf = new CapituloFactura();
+		cf.setAnyo(anyo);
+		cf.setMes(mes);
+		cf.setDia(dia);
+		cf.setPrecio(s.getTipo().getPrecioCap());
+		cf.setCapitulo(capi);
+		cf.setSerie(s);
+		sr.save(cf);
+		
+		u.anadeCapVisto(cf,sr);
+		ur.save(u);
+		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "usuarios/{usuario}/cargos/{anyo}/{mes}", method = RequestMethod.GET)
+	public ResponseEntity<Factura> getCargos(@PathVariable(value="usuario") String usuario,@PathVariable(value="anyo") int anyo, @PathVariable(value="mes") int mes){
+		Usuario u = ur.findByAlias(usuario);
+		if(u == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		Factura f = null;
+		for(Factura fac: u.getFacturas()){
+			System.out.println("Año: "+fac.getAnyo()+" Mes:"+fac.getMes());
+			if(fac.getAnyo()==anyo && fac.getMes()==mes){
+				f = fac;
+				break;
+			}
+		}
+		return new ResponseEntity<Factura>(f,HttpStatus.OK);
 	}
 }
