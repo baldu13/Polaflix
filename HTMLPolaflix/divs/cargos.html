@@ -3,12 +3,12 @@
 	<div ng-show="loaded">
 		<div class=menuCargos>
 			<a href="" class="boton" ng-click="ctrl.changePeriodoClicked(2)"><i class="material-icons">chevron_left</i></a>
-			Lista de cargos del {{mes}}/{{anyo}}
+			Lista de cargos de {{meses[mes-1]}} del {{anyo}}
 			<a href="" class="boton" ng-click="ctrl.changePeriodoClicked(1)"><i class="material-icons">chevron_right</i></a>
 		</div>
 		<table id="listaCargos">
 			<th>Capitulo</th><th>Fecha</th><th>Precio</th>
-			<tr ng-repeat="cap in cargos">
+			<tr ng-repeat="cap in cargos | orderBy:'dia'"">
 				<td>{{cap.capitulo.titulo}}</td><td>{{cap.dia}}/{{cap.mes}}/{{cap.anyo}}</td><td>{{cap.precio}}€</td>
 			</tr>
 			<tr><td></td><td></td><td></td>

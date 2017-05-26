@@ -51,7 +51,7 @@ public class UsuariosController {
 		if(u == null || s == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		u.anadeNuevaSerie(s,ur);
+		u.anadeNuevaSerie(s,sr,ur);
 		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
 	}
 	

@@ -9,7 +9,6 @@ import javax.persistence.*;
 import org.hibernate.annotations.Proxy;
 
 import es.polaflix.repositories.SeriesRepository;
-import es.polaflix.repositories.UsersRepository;
 
 @Entity
 @Proxy(lazy = false)
@@ -134,19 +133,8 @@ public abstract class Usuario implements Comparable<Usuario>{
 		}
 	}
 	
-	public void anadeNuevaSerie(Serie s, UsersRepository ur){
-		boolean registrada = false;
-		registrada = (seriesPendientes.contains(s) || seriesTerminadas.contains(s));
-		for(SerieEmpezada se: seriesEmpezadas){
-			if(se.getSerie().getId() == s.getId()){
-				registrada = true;
-				break;
-			}
-		}
-		if(!registrada){
-			this.seriesPendientes.add(s);
-			ur.save(this);
-		}
+	public void anadeNuevaSerie(Serie s, SeriesRepository sr, UsersRepository ur){
+		
 	}
 	
 	@Override

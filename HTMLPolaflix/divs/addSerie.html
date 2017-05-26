@@ -1,2 +1,19 @@
-<div>
+<div ng-app="PolaflixApp" ng-controller="ListadoSeriesController as ctrl">
+	<p class="errormsg" ng-hide="loaded">No se pudieron recobrar los datos...</p>
+	<div ng-show="loaded">
+		<div id="filtros">
+			<span>
+				<a href="" ng-click="ctrl.filtrar('a')">A</a> | B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span>
+  			<span id="busqueda">Buscar: <input type="text" id="find"></span>
+		</div>
+		<br/>
+		<h4>Listado de series disponibles en Polaflix</h4>
+		<table id="listaCargos">
+			<th>Titulo</th><th></th>
+			<tr ng-repeat="serie in series">
+				<td class="boton" ng-click="ctrl.desplegarDescripcion(serie.id)">{{serie.nombre}}<p class="descripcion" ng-show="descripciones[serie.id-1]">{{serie.descripcion}}</p></td><td><a href="" ng-click="ctrl.anadirSerie(serie.id)">Añadir</a></td>
+			</tr>
+		</table>
+	</div>
+
 </div>

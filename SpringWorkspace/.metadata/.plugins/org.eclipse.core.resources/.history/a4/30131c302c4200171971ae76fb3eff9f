@@ -44,17 +44,6 @@ public class UsuariosController {
 		return new ResponseEntity<Set<SerieEmpezada>>(u.getSeriesEmpezadas(),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "usuarios/{usuario}/empezadas/{id}", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> anadeSerie(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int idSerie){
-		Usuario u = ur.findByAlias(usuario);
-		Serie s = sr.findById(idSerie);
-		if(u == null || s == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		u.anadeNuevaSerie(s,ur);
-		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
-	}
-	
 	@RequestMapping(value = "usuarios/{usuario}/pendientes", method = RequestMethod.GET)
 	public ResponseEntity<Set<Serie>> getSeriesPendientes(@PathVariable(value="usuario") String usuario){
 		Usuario u = ur.findByAlias(usuario);
@@ -128,20 +117,5 @@ public class UsuariosController {
 			}
 		}
 		return new ResponseEntity<Factura>(f,HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "usuarios/{usuario}/cuotaMax", method = RequestMethod.GET)
-	public ResponseEntity<Double> getCuotaUsuario(@PathVariable(value="usuario") String usuario){
-		Usuario u = ur.findByAlias(usuario);
-		if(u == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		double cuota;
-		if(u instanceof UsuarioCuotaFija){
-			cuota = UsuarioCuotaFija.CUOTA_MENSUAL;
-		} else {
-			cuota = -1;
-		}
-		return new ResponseEntity<Double>(cuota,HttpStatus.OK);
 	}
 }

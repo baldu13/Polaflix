@@ -84,7 +84,7 @@ var myApp = angular.module('PolaflixApp',[]);
 
         this.seeCap = function(serie, temp, cap){
           $http.post('http://localhost:8080/usuarios/gryphus/capitulosVistos/'+serie+'/'+temp+'/'+cap);
-          window.location.replace('http://localhost:8000/polaflix.html#!/verSerie?id='+serie+'&temp='+temp+'&cap='+cap);
+          window.location.replace('http://localhost:8000/polaflix.html#!/verSerie?serie='+$scope.serie.nombre+'&temp='+temp+'&cap='+cap);
         }
 
         //Funcion para obtener parametros de la url
@@ -105,7 +105,7 @@ var myApp = angular.module('PolaflixApp',[]);
     myApp.controller('CapSerieController',['$scope','$http',
              function($scope,$http) {
 
-        $scope.serie = getParameterByName("id");
+        $scope.serie = getParameterByName("serie");
         $scope.temp = getParameterByName("temp");
         $scope.cap = getParameterByName("cap");
 
@@ -132,6 +132,7 @@ var myApp = angular.module('PolaflixApp',[]);
         $scope.cargos;
         $scope.total = 0;
         $scope.loaded = false;
+        $scope.meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
         var d = new Date();
 
@@ -140,33 +141,53 @@ var myApp = angular.module('PolaflixApp',[]);
 
         $http.get('http://localhost:8080/usuarios/gryphus/cargos/'+$scope.anyo+'/'+$scope.mes+'.json').then(
           function(response) {
-            console.log('Cargos del mes/anyo: '+$scope.mes+'/'+$scope.anyo);
             $scope.cargos = response.data.capitulos;
-            console.log(response.data);
             var i;
             if(response.data){
               for (i = 0; i < response.data.capitulos.length; i++) {
                   $scope.total += response.data.capitulos[i].precio;
               }
-              $scope.loaded = true;
             }
+            calculaTotal();
+            $scope.loaded = true;
           },
           function(response) {
             $scope.loaded = false;
           }
         );
 
-
+        
         //Cambiar a mes anterior o siguiente en la factura
-        //TODO
         this.changePeriodoClicked = function(tmp){
-          if((temp>1 && tmp == 2) || (temp < $scope.serie.temporadas.length && tmp == 1)){ //En los limites de las temporadas
-            if(tmp == 1)
-              temp = Number(temp) + 1;
-            if(tmp == 2)
-              temp = Number(temp) - 1;
-            window.location.replace('http://localhost:8000/polaflix.html#!/serie?id='+idSerie+'&temp='+temp);
+          if(tmp == 2){ //Mes anterior
+            if($scope.mes == 1){
+              $scope.mes = 12;
+              $scope.anyo = $scope.anyo - 1;
+            }else {
+              $scope.mes--;
+            }
+          } else if(tmp ==1){
+            if($scope.mes == 12){
+              $scope.mes = 1;
+              $scope.anyo++;
+            } else {
+              $scope.mes++;
+            }
           }
+          window.location.replace('http://localhost:8000/polaflix.html#!/cargos?mes='+$scope.mes+'&anyo='+$scope.anyo);
+        }
+
+        var calculaTotal =function(){
+          $http.get('http://localhost:8080/usuarios/gryphus/cuotaMax').then(
+          function(response) {
+            var cuota = response.data;
+            if(cuota != -1){
+              $scope.total = cuota;
+            }
+          },
+          function(response) {
+          }
+          );
         }
 
 
@@ -180,5 +201,40 @@ var myApp = angular.module('PolaflixApp',[]);
           if (!results[2]) return '';
           return decodeURIComponent(results[2].replace(/\+/g, " "));
         };
+      }
+    ]);
+
+    //Controlador para el listado de series
+    myApp.controller('ListadoSeriesController',['$scope','$http',
+             function($scope,$http) {
+
+        $scope.series;
+        $scope.descripciones = [];
+        $scope.loaded = false;
+
+        $http.get('http://localhost:8080/series.json').then(
+          function(response) {
+            $scope.series = response.data;
+            for (i = 0; i < response.data.length; i++) {
+                  $scope.descripciones.push(false); //No se muestra ninguna al principio
+            }
+            $scope.loaded = true;
+          },
+          function(response) {
+            $scope.loaded = false;
+          }
+        );
+
+        this.anadirSerie = function(id){
+          $http.post('http://localhost:8080/usuarios/gryphus/empezadas/'+id);
+        }
+
+        this.desplegarDescripcion = function(id){
+          $scope.descripciones[id-1] = !($scope.descripciones[id-1]); //Invertimos, si se mostraba se deja de mostrar y viceversa
+        }
+
+        this.filtrar = function(letra){
+          console.log("Pulsada la letra "+letra);
+        }
       }
     ]);

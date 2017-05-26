@@ -45,14 +45,13 @@ public class UsuariosController {
 	}
 	
 	@RequestMapping(value = "usuarios/{usuario}/empezadas/{id}", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> anadeSerie(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int idSerie){
+	public ResponseEntity<Set<SerieEmpezada>> anadeSerie(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int idSerie){
 		Usuario u = ur.findByAlias(usuario);
 		Serie s = sr.findById(idSerie);
 		if(u == null || s == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		u.anadeNuevaSerie(s,ur);
-		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+		return new ResponseEntity<Set<SerieEmpezada>>(u.getSeriesEmpezadas(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "usuarios/{usuario}/pendientes", method = RequestMethod.GET)
