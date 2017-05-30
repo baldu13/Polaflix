@@ -144,49 +144,11 @@ public abstract class Usuario implements Comparable<Usuario>{
 					}
 				}
 				if(!visto){
-					//Añado el nuevo cap a los vistos
-					System.err.println("Añadido a la lista de vistos!");
 					se.getCapitulos().add(cf.getCapitulo());
 					sr.save(se);
-					visto = true;
 				}
 			}
 		}
-		
-		//Si la serie no esta empezada...
-		if(!visto){
-			SerieEmpezada se = new SerieEmpezada();
-			se.setSerie(cf.getSerie());
-			Set<Capitulo> caps = new HashSet<Capitulo>();
-			caps.add(cf.getCapitulo());
-			se.setCapitulos(caps);
-			sr.save(se);
-			seriesEmpezadas.add(se);
-			if(seriesPendientes.contains(cf.getSerie())){
-				seriesPendientes.remove(cf.getSerie());
-			}
-			if(seriesTerminadas.contains(cf.getSerie())){
-				seriesTerminadas.remove(cf.getSerie());
-			}
-		}
-		
-		//Si hemos visto todos los capitulos, la pasamos a terminada
-		int capsVistos = 0;
-		int capsTotales = 0;
-		for(Temporada t: cf.getSerie().getTemporadas()){
-			capsTotales += t.getCapitulos().size();
-		}
-		for(SerieEmpezada se: seriesEmpezadas){
-			if(se.getSerie().getId()==cf.getSerie().getId()){
-				capsVistos = se.getCapitulos().size();
-				if(capsVistos>=capsTotales){
-					seriesTerminadas.add(cf.getSerie());
-					seriesEmpezadas.remove(se);
-				}
-				break;
-			}
-		}
-		//Guardamos para terminar
 		ur.save(this);
 	}
 	

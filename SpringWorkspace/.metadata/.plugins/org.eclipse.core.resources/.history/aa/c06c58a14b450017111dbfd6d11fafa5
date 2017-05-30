@@ -179,11 +179,6 @@ public abstract class Usuario implements Comparable<Usuario>{
 		for(SerieEmpezada se: seriesEmpezadas){
 			if(se.getSerie().getId()==cf.getSerie().getId()){
 				capsVistos = se.getCapitulos().size();
-				if(capsVistos>=capsTotales){
-					seriesTerminadas.add(cf.getSerie());
-					seriesEmpezadas.remove(se);
-				}
-				break;
 			}
 		}
 		//Guardamos para terminar

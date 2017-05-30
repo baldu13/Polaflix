@@ -6,8 +6,9 @@
 			<span class="tipoSerie">{{serie.tipo.nombre}}</span>
 		</div>
 		<table id="listaCapitulos">
+			<th>Titulo</th><th>Visto</th><th>Ver</th>
 			<tr ng-repeat="cap in tempActiva.capitulos">
-				<td><div class="serieColumn">{{cap.titulo}}</div></td> <td><a href="" class="boton" ng-click="ctrl.seeCap(serie.id,tempActiva.numTemp,cap.numCap)"><i class="material-icons">add</i></a></td>
+				<td><div class="serieColumn">{{cap.titulo}}</div></td> <td><span class="visto" ng-show="capsVistos[cap.numCap-1]">Visto</span></td> <td><a href="" class="boton" ng-click="ctrl.seeCap(serie.id,tempActiva.numTemp,cap.numCap)"><i class="material-icons">add</i></a></td>
 			</tr>
 		</table>
 	</div>

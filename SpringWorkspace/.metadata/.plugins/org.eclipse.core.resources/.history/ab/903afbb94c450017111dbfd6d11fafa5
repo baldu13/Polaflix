@@ -60,6 +60,17 @@ public class UsuariosController {
 		return new ResponseEntity<SerieEmpezada>(se,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "usuarios/{usuario}/empezadas/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> anadeSerie(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int idSerie){
+		Usuario u = ur.findByAlias(usuario);
+		Serie s = sr.findById(idSerie);
+		if(u == null || s == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		u.anadeNuevaSerie(s,ur);
+		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "usuarios/{usuario}/pendientes", method = RequestMethod.GET)
 	public ResponseEntity<Set<Serie>> getSeriesPendientes(@PathVariable(value="usuario") String usuario){
 		Usuario u = ur.findByAlias(usuario);
@@ -72,12 +83,10 @@ public class UsuariosController {
 	@RequestMapping(value = "usuarios/{usuario}/pendientes/{id}", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> addSeriePendientes(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int id){
 		Usuario u = ur.findByAlias(usuario);
-		Serie s = sr.findById(id);
-		if(u == null || s == null){
+		if(u == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		u.anadeNuevaSerie(s,ur);
-		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+		return new ResponseEntity<Set<Serie>>(true,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "usuarios/{usuario}/terminadas", method = RequestMethod.GET)

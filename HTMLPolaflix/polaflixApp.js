@@ -49,21 +49,43 @@ var myApp = angular.module('PolaflixApp',[]);
     myApp.controller('TempSerieController',['$scope','$http',
              function($scope,$http) {
 
+        $scope.todo;
         $scope.serie;
+        $scope.capsVistos = [];
         $scope.serieLoaded  = false;
 
         var idSerie = getParameterByName("id");
         var temp = getParameterByName("temp");
         $scope.tempActiva;
 
-        $http.get('http://localhost:8080/series/'+idSerie+'.json').then(
+        $http.get('http://localhost:8080/usuarios/gryphus/empezadas/'+idSerie+'.json').then(
           function(response) {
-            $scope.serie = response.data;
-            for(i=0; i<$scope.serie.temporadas.length; i++){
-              if(!$scope.serieLoaded && $scope.serie.temporadas[i].numTemp == temp){
-                $scope.tempActiva = $scope.serie.temporadas[i];
-                $scope.serieLoaded = true;
+            $scope.todo = response.data;
+            $scope.serie = response.data.serie;
+            if($scope.serie){
+              for(i=0; i<$scope.serie.temporadas.length; i++){
+                if(!$scope.serieLoaded && $scope.serie.temporadas[i].numTemp == temp){
+                  $scope.tempActiva = $scope.serie.temporadas[i];
+                  $scope.serieLoaded = true;
+                  calculaCapsVistos();
+                }
               }
+            } else {
+              $http.get('http://localhost:8080/series/'+idSerie+'.json').then(
+                function(response) {
+                  $scope.todo = response.data;
+                  $scope.serie = response.data;
+                  for(i=0; i<$scope.serie.temporadas.length; i++){
+                    if(!$scope.serieLoaded && $scope.serie.temporadas[i].numTemp == temp){
+                      $scope.tempActiva = $scope.serie.temporadas[i];
+                      $scope.serieLoaded = true;
+                    }
+                  }
+                },
+                function(response) {
+                  $scope.serieLoaded = false;
+                }
+              );
             }
           },
           function(response) {
@@ -87,6 +109,22 @@ var myApp = angular.module('PolaflixApp',[]);
           window.location.replace('http://localhost:8000/polaflix.html#!/verSerie?serie='+$scope.serie.nombre+'&temp='+temp+'&cap='+cap);
         }
 
+        function calculaCapsVistos() {
+          console.log($scope.todo.capitulos);
+          $scope.capsVistos = [];
+          var capsTemp = $scope.todo.serie.temporadas[i].capitulos;
+          var capsVistos = $scope.todo.capitulos;
+          var visto;
+          for(i=0;i<capsTemp.length;i++){
+            visto = false;
+            for(j=0;j<capsVistos.length;j++){
+              if(capsVistos[j].id == capsTemp[i].id){
+                visto = true;
+              }
+            }
+            $scope.capsVistos.push(visto);
+          }
+        }
         //Funcion para obtener parametros de la url
         function getParameterByName(name, url) {
           if (!url) url = window.location.href;
