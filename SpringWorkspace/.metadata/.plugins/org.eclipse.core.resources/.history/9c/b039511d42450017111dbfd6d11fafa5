@@ -44,22 +44,6 @@ public class UsuariosController {
 		return new ResponseEntity<Set<SerieEmpezada>>(u.getSeriesEmpezadas(),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "usuarios/{usuario}/empezadas/{id}", method = RequestMethod.GET)
-	public ResponseEntity<SerieEmpezada> getSerieEmpezada(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int id){
-		Usuario u = ur.findByAlias(usuario);
-		if(u == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		SerieEmpezada se = null;
-		for(SerieEmpezada s: u.getSeriesEmpezadas()){
-			if(s.getSerie().getId()==id){
-				se = s;
-				break;
-			}
-		}
-		return new ResponseEntity<SerieEmpezada>(se,HttpStatus.OK);
-	}
-	
 	@RequestMapping(value = "usuarios/{usuario}/empezadas/{id}", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> anadeSerie(@PathVariable(value="usuario") String usuario, @PathVariable(value="id") int idSerie){
 		Usuario u = ur.findByAlias(usuario);

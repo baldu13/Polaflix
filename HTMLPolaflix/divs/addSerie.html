@@ -2,11 +2,36 @@
 	<p class="errormsg" ng-hide="loaded">No se pudieron recobrar los datos...</p>
 	<div ng-show="loaded">
 		<div id="filtros">
-			<span>
-				<a href="" ng-click="ctrl.filtrar('a')">A</a> | B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span>
+			<span id="filtroLetra">
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('A')}" ng-click="ctrl.filtrar('A')">A</a> |
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('B')}" ng-click="ctrl.filtrar('B')">B</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('C')}" ng-click="ctrl.filtrar('C')">C</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('D')}" ng-click="ctrl.filtrar('D')">D</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('E')}" ng-click="ctrl.filtrar('E')">E</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('F')}" ng-click="ctrl.filtrar('F')">F</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('G')}" ng-click="ctrl.filtrar('G')">G</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('H')}" ng-click="ctrl.filtrar('H')">H</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('I')}" ng-click="ctrl.filtrar('I')">I</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('J')}" ng-click="ctrl.filtrar('J')">J</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('K')}" ng-click="ctrl.filtrar('K')">K</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('L')}" ng-click="ctrl.filtrar('L')">L</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('M')}" ng-click="ctrl.filtrar('M')">M</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('N')}" ng-click="ctrl.filtrar('N')">N</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('O')}" ng-click="ctrl.filtrar('O')">O</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('P')}" ng-click="ctrl.filtrar('P')">P</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('Q')}" ng-click="ctrl.filtrar('Q')">Q</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('R')}" ng-click="ctrl.filtrar('R')">R</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('S')}" ng-click="ctrl.filtrar('S')">S</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('T')}" ng-click="ctrl.filtrar('T')">T</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('U')}" ng-click="ctrl.filtrar('U')">U</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('V')}" ng-click="ctrl.filtrar('V')">V</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('W')}" ng-click="ctrl.filtrar('W')">W</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('X')}" ng-click="ctrl.filtrar('X')">X</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('Y')}" ng-click="ctrl.filtrar('Y')">Y</a> | 
+				<a href="" ng-class="{selected: ctrl.estaFiltrada('Z')}" ng-click="ctrl.filtrar('Z')">Z</a>
+			</span>
   			<span id="busqueda">Buscar: <input type="text" id="find"></span>
 		</div>
-		<br/>
 		<h4>Listado de series disponibles en Polaflix</h4>
 		<table id="listaCargos">
 			<th>Titulo</th><th></th>

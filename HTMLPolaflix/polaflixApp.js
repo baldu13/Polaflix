@@ -208,6 +208,8 @@ var myApp = angular.module('PolaflixApp',[]);
     myApp.controller('ListadoSeriesController',['$scope','$http',
              function($scope,$http) {
 
+        $scope.letrasFiltradas = [];
+        $scope.seriesTotal;
         $scope.series;
         $scope.descripciones = [];
         $scope.loaded = false;
@@ -215,6 +217,7 @@ var myApp = angular.module('PolaflixApp',[]);
         $http.get('http://localhost:8080/series.json').then(
           function(response) {
             $scope.series = response.data;
+            $scope.seriesTotal = response.data;
             for (i = 0; i < response.data.length; i++) {
                   $scope.descripciones.push(false); //No se muestra ninguna al principio
             }
@@ -234,7 +237,33 @@ var myApp = angular.module('PolaflixApp',[]);
         }
 
         this.filtrar = function(letra){
-          console.log("Pulsada la letra "+letra);
+          var index = $scope.letrasFiltradas.indexOf(letra);
+          if(index==-1){
+            //Anadimos la letra al filtro
+            $scope.letrasFiltradas.push(letra);
+          } else {
+            $scope.letrasFiltradas.splice(index, 1);
+          }
+          this.recalculaListaSeries();
+        }
+
+        this.recalculaListaSeries = function(){
+          $scope.series = [];
+          var letra;
+          if($scope.letrasFiltradas.length == 0){
+            $scope.series = $scope.seriesTotal;
+          } else {
+            for(i=0;i<$scope.seriesTotal.length; i++){
+              letra = $scope.seriesTotal[i].nombre.charAt(0); //Inicial
+              if($scope.letrasFiltradas.indexOf(letra)!=-1){
+                $scope.series.push($scope.seriesTotal[i]);
+              }
+            }
+          }
+        }
+
+        this.estaFiltrada = function(letra){
+          return $scope.letrasFiltradas.indexOf(letra)!=-1;
         }
       }
     ]);

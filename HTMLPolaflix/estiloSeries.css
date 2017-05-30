@@ -90,3 +90,7 @@ div.serieInfo {
 #busqueda {
 	float:right;
 }
+
+a.selected {
+	color: red;
+}
