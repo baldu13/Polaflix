@@ -30,7 +30,7 @@
 				<a href="" ng-class="{selected: ctrl.estaFiltrada('Y')}" ng-click="ctrl.filtrar('Y')">Y</a> | 
 				<a href="" ng-class="{selected: ctrl.estaFiltrada('Z')}" ng-click="ctrl.filtrar('Z')">Z</a>
 			</span>
-  			<span id="busqueda">Buscar: <input type="text" id="find"></span>
+  			<span id="busqueda">Buscar: <input type="text" id="find" ng-change="ctrl.filtraBusqueda()" ng-model="searchText"></span>
 		</div>
 		<h4>Listado de series disponibles en Polaflix</h4>
 		<table id="listaCargos">
