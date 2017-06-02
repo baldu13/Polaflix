@@ -76,7 +76,6 @@ h4 {
 }
 
 span.tipoSerie {
-	background-color: red;
 	float: right;
 	margin-right: 10%;
 	border-radius: 50%;
@@ -84,6 +83,18 @@ span.tipoSerie {
 	width: 6em;
     height: 2em;
     padding: 7px;
+}
+
+span.tipoSerie.Gold {
+	background-color: gold;
+}
+
+span.tipoSerie.Estandar {
+	background-color: darkgreen;
+}
+
+span.tipoSerie.Silver {
+	background-color: silver;
 }
 
 div.serieInfo {

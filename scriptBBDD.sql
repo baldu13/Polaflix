@@ -109,15 +109,32 @@ INSERT INTO serie_actores(serie_id,actor_id) VALUES(2,5);
 
 ### Death Note ###
 #Temporadas
-
+INSERT INTO Temporada(id,num_temp) VALUES(8,1);
+INSERT INTO serie_temporadas(serie_id,temporadas_id) VALUES (3,8);
 #Capitulos
-
+INSERT INTO Capitulo(id,descripcion,num_cap,titulo) VALUES (29,'Primer episodio de Death Note',1,'Renacimiento');
+INSERT INTO temporada_capitulos(temporada_id,capitulos_id) VALUES (8,29);
+INSERT INTO Capitulo(id,descripcion,num_cap,titulo) VALUES (30,'Segundo episodio de Death Note',2,'Duelo');
+INSERT INTO temporada_capitulos(temporada_id,capitulos_id) VALUES (8,30);
+INSERT INTO Capitulo(id,descripcion,num_cap,titulo) VALUES (31,'Tercer episodio de Death Note',2,'Negociaciones');
+INSERT INTO temporada_capitulos(temporada_id,capitulos_id) VALUES (8,31);
+INSERT INTO Capitulo(id,descripcion,num_cap,titulo) VALUES (32,'Cuarto episodio de Death Note',2,'Persecucion');
+INSERT INTO temporada_capitulos(temporada_id,capitulos_id) VALUES (8,32);
+INSERT INTO Capitulo(id,descripcion,num_cap,titulo) VALUES (33,'Quinto episodio de Death Note',2,'Estrategia');
+INSERT INTO temporada_capitulos(temporada_id,capitulos_id) VALUES (8,33);
 #Artistas
-	 
+INSERT INTO Artista(id,nombre,apellido,tipo) VALUES(6,'Araki','Tetsuro','creador');
+INSERT INTO serie_creadores(serie_id,creador_id) VALUES(3,6);
+INSERT INTO Artista(id,nombre,apellido,tipo) VALUES(7,'Light','Yagami','actor');
+INSERT INTO Artista(id,nombre,apellido,tipo) VALUES(8,'L','','actor');
+INSERT INTO serie_actores(serie_id,actor_id) VALUES(3,7); 
+INSERT INTO serie_actores(serie_id,actor_id) VALUES(3,8); 
 
 #Usuarios
 INSERT INTO Usuario(id,tipo,alias,cuenta_bancaria,password) VALUES (1,'CuotaFija','pepeflow','ES3211122233344455566677','pepe23');
 INSERT INTO Usuario(id,tipo,alias,cuenta_bancaria,password) VALUES (2,'Standard','gryphus','ES99988877766655544433','elpipero');
 
+#Consultas del test
+USE polaflix;
 SELECT * FROM Capitulo_Factura;
 SELECT * FROM factura;

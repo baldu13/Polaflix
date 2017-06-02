@@ -52,6 +52,7 @@ var myApp = angular.module('PolaflixApp',[]);
         $scope.todo;
         $scope.serie;
         $scope.capsVistos = [];
+        $scope.descripciones = [];
         $scope.serieLoaded  = false;
 
         var idSerie = getParameterByName("id");
@@ -125,6 +126,11 @@ var myApp = angular.module('PolaflixApp',[]);
             $scope.capsVistos.push(visto);
           }
         }
+
+        this.desplegarDescripcion = function(id){
+          $scope.descripciones[id-1] = !($scope.descripciones[id-1]); //Invertimos, si se mostraba se deja de mostrar y viceversa
+        }
+
         //Funcion para obtener parametros de la url
         function getParameterByName(name, url) {
           if (!url) url = window.location.href;

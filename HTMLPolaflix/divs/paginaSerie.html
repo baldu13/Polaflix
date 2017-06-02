@@ -3,12 +3,12 @@
 	<div ng-show="serieLoaded">
 		<div class="serieInfo">
 			<a href="" class="boton" ng-click="ctrl.changeTempClicked(2)"><i class="material-icons">chevron_left</i></a><i id="tituloSerie">{{serie.nombre}}</i><span>|</span> Temporada <i id="numTemp">{{tempActiva.numTemp}}</i><a href="" class="boton" ng-click="ctrl.changeTempClicked(1)"><i class="material-icons">chevron_right</i></a>
-			<span class="tipoSerie">{{serie.tipo.nombre}}</span>
+			<span class="tipoSerie {{serie.tipo.nombre}}">{{serie.tipo.nombre}}</span>
 		</div>
 		<table id="listaCapitulos">
 			<th>Titulo</th><th>Visto</th><th>Ver</th>
 			<tr ng-repeat="cap in tempActiva.capitulos">
-				<td><div class="serieColumn">{{cap.titulo}}</div></td> <td><span class="visto" ng-show="capsVistos[cap.numCap-1]">Visto</span></td> <td><a href="" class="boton" ng-click="ctrl.seeCap(serie.id,tempActiva.numTemp,cap.numCap)"><i class="material-icons">add</i></a></td>
+				<td class="boton" ng-click="ctrl.desplegarDescripcion(cap.numCap)"><div class="serieColumn">{{cap.titulo}}<p class="descripcion" ng-show="descripciones[cap.numCap-1]">{{cap.descripcion}}</p></div></td> <td><span class="visto" ng-show="capsVistos[cap.numCap-1]">Visto</span></td> <td><a href="" class="boton" ng-click="ctrl.seeCap(serie.id,tempActiva.numTemp,cap.numCap)"><i class="material-icons">add</i></a></td>
 			</tr>
 		</table>
 	</div>
