@@ -12,7 +12,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import es.polaflix.domain.*;
+import es.polaflix.domain.Capitulo;
+import es.polaflix.domain.Serie;
+import es.polaflix.domain.SerieEmpezada;
+import es.polaflix.domain.Usuario;
 import es.polaflix.repositories.*;
 
 @SpringBootApplication

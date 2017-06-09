@@ -30,13 +30,18 @@
 				<a href="" ng-class="{selected: ctrl.estaFiltrada('Y')}" ng-click="ctrl.filtrar('Y')">Y</a> | 
 				<a href="" ng-class="{selected: ctrl.estaFiltrada('Z')}" ng-click="ctrl.filtrar('Z')">Z</a>
 			</span>
-  			<span id="busqueda">Buscar: <input type="text" id="find" ng-change="ctrl.filtraBusqueda()" ng-model="searchText"></span>
+  			<span id="busqueda">Buscar: <input type="text" id="find" ng-model="searchText"></span>
 		</div>
 		<h4>Listado de series disponibles en Polaflix</h4>
 		<table id="listaCargos">
 			<th>Titulo</th><th></th>
-			<tr ng-repeat="serie in series">
-				<td class="boton" ng-click="ctrl.desplegarDescripcion(serie.id)">{{serie.nombre}}<p class="descripcion" ng-show="descripciones[serie.id-1]">{{serie.descripcion}}</p></td><td><a href="" ng-click="ctrl.anadirSerie(serie.id)">Añadir</a></td>
+			<tr ng-repeat="serie in series | filter:ctrl.filtraBusqueda() | filter:ctrl.filtraLetras()">
+				<td class="boton" ng-click="ctrl.desplegarDescripcion(serie.id)">
+					{{serie.nombre}}
+					<p class="descripcion" ng-show="descripciones[serie.id-1]">{{serie.descripcion}}<br/>
+					<span>Creadores: </span><span ng-repeat="actor in serie.creadores">{{actor.nombre}} {{actor.apellido}}</span></span><br/>
+					<span>Actores: </span><span ng-repeat="actor in serie.actores">{{actor.nombre}} {{actor.apellido}}</span></p>
+					<td><a href="" ng-click="ctrl.anadirSerie(serie.id)">Añadir</a></td>
 			</tr>
 		</table>
 	</div>

@@ -73,6 +73,8 @@ h4 {
 	color: black;
 	font-style: oblique;
 	color: indigo;
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 span.tipoSerie {

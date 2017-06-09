@@ -39,44 +39,32 @@ angular.module('PolaflixApp').controller('ListadoSeriesController',['$scope','$h
       } else {
         $scope.letrasFiltradas.splice(index, 1);
       }
-      this.recalculaListaSeries();
     }
 
-    this.recalculaListaSeries = function(){
-      $scope.series = [];
-      var letra;
-      if($scope.letrasFiltradas.length == 0){
-        $scope.series = $scope.seriesTotal;//.splice(0);
-      } else {
-        for(i=0;i<$scope.seriesTotal.length; i++){
-          letra = $scope.seriesTotal[i].nombre.charAt(0); //Inicial
-          if($scope.letrasFiltradas.indexOf(letra)!=-1){
-            $scope.series.push($scope.seriesTotal[i]);
-          }
-        }
-      }
-      console.log($scope.series);
-      for(i=0;i<$scope.series.length;i++){
-        if(!contieneCadena($scope.textoFiltrado,$scope.series[i])){
-          //Eliminarla
-          console.log($scope.series[i]);
-        }
-      }
-    }
-
+    //Para colorear las letras que estan pintadas
     this.estaFiltrada = function(letra){
-      return $scope.letrasFiltradas.indexOf(letra)!=-1;
+      return $scope.letrasFiltradas.includes(letra);
     }
+
 
     this.filtraBusqueda = function() {
-      $scope.textoFiltrado = $scope.searchText;
-      this.recalculaListaSeries();
+      return function(serie) {
+          if(!$scope.searchText){
+            return true;
+          }
+          var se = serie.nombre.toLowerCase();
+          return se.includes($scope.searchText.toLowerCase());
+      };
     }
 
-    function contieneCadena(cadena, serie){
-      var txt = cadena.toLowerCase();
-      var titulo = serie.nombre.toLowerCase();
-      return titulo.indexOf(txt)!=-1;
+    this.filtraLetras = function() {
+      return function(serie) {
+          if($scope.letrasFiltradas.length==0){
+            return true;
+          }
+          var character = serie.nombre.charAt(0).toUpperCase();
+          return $scope.letrasFiltradas.includes(character);
+      };
     }
   }
 ]);

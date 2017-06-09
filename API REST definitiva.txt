@@ -1,0 +1,18 @@
+Para usuarios:
+	GET /usuarios: Lista de todos los usuarios
+	GET usuarios/{usuario}: Usuario concreto
+	GET usuarios/{usuario}/empezadas: Lista de series empezadas por el usuario concreto
+	GET usuarios/{usuario}/pendientes: Lista de series pendientes por el usuario concreto
+	GET usuarios/{usuario}/terminadas: Lista de series terminadas por el usuario concreto
+	(A las 3 anteriores, añadiendo /{id} una serie concreta de un usuario (para ver capitulos vistos))
+	POST usuarios/{usuario}/capitulosVistos/{serie}/{temp}/{cap}:
+		Añade el capitulo a vistos
+		Cobra el capitulo en el mes actual
+		Actualiza la serie a empezada en caso de ser necesario
+	GET usuarios/{usuario}/cargos/{anyo}/{mes}: Lista de cargos de un usuario en un mes concreto de un año
+	GET usuarios/{usuario}/cuotaMax: Cuota máxima al mes del usuario, -1 si no tiene cuota
+
+
+Para series:
+	GET /series: Lista de todas las series del sistema
+	GET /series/{serie}: Información sobre una serie concreta
