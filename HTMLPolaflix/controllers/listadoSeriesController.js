@@ -3,8 +3,6 @@ angular.module('PolaflixApp').controller('ListadoSeriesController',['$scope','$h
          function($scope,$http) {
 
     $scope.letrasFiltradas = [];
-    $scope.textoFiltrado;
-    $scope.seriesTotal;
     $scope.series;
     $scope.descripciones = [];
     $scope.loaded = false;
@@ -12,7 +10,6 @@ angular.module('PolaflixApp').controller('ListadoSeriesController',['$scope','$h
     $http.get('http://localhost:8080/series.json').then(
       function(response) {
         $scope.series = response.data;
-        $scope.seriesTotal = response.data;
         for (i = 0; i < response.data.length; i++) {
               $scope.descripciones.push(false); //No se muestra ninguna al principio
         }
