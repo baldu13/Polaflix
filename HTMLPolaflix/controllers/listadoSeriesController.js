@@ -21,7 +21,7 @@ angular.module('PolaflixApp').controller('ListadoSeriesController',['$scope','$h
     );
 
     this.anadirSerie = function(id){
-      $http.post('http://localhost:8080/usuarios/gryphus/empezadas/'+id);
+      $http.post('http://localhost:8080/usuarios/gryphus/pendientes/'+id);
     }
 
     this.desplegarDescripcion = function(id){
